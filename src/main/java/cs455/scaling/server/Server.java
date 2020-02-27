@@ -2,6 +2,11 @@ package cs455.scaling.server;
 
 import cs455.scaling.util.ThroughputStatistics;
 
+import java.io.IOException;
+import java.net.*;
+import java.nio.channels.*;
+import java.util.Iterator;
+
 /**
  * There is exactly one server node in the system. The server node provides the following functions:
  *      A. Accepts incoming network connections from the clients.
@@ -15,6 +20,8 @@ public class Server implements Node, Runnable {
     private final int portnum, threadPoolSize, batchSize, batchTime;
     private final ThreadPool threadPool;
     private final ThroughputStatistics stats;
+    private Selector selector;
+    private ServerSocketChannel serverChannel;
     
     public Server(int portnum, int threadPoolSize, int batchSize, int batchTime) {
         this.portnum = portnum;
@@ -23,26 +30,60 @@ public class Server implements Node, Runnable {
         this.batchTime = batchTime;
         stats = new ThroughputStatistics();
         threadPool = new ThreadPool(threadPoolSize);
+    
         
+        try {
+    
+            selector = Selector.open();
+            serverChannel = ServerSocketChannel.open();
+            serverChannel.socket().bind(new InetSocketAddress(portnum));
+            serverChannel.configureBlocking(false);
+            serverChannel.register(selector, SelectionKey.OP_ACCEPT);
+    
+            
+            
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
         
     }
     
     // TODO
     @Override public void run() {
     
+        while (true) {
+            
+            try {
+                if (selector.selectNow() == 0) continue;
+            } catch (IOException ioe) {
+                continue;
+            }
     
-    
-    }
-    
-    private class PrintHello implements Runnable {
-        int i;
-        public PrintHello(int i) {
-            this.i = i;
+            Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
+            while (iter.hasNext()) {
+                SelectionKey key = iter.next();
+                if (key.isAcceptable()) {
+                    
+                    try {
+                        ServerSocketChannel serverSocketChannel = (ServerSocketChannel)key.channel();
+                        SocketChannel socketChannel = serverSocketChannel.accept();
+                        System.out.println(socketChannel.socket().getInetAddress().getHostName());
+                        System.out.println(socketChannel.socket().getLocalSocketAddress().toString());
+                        key.attach(null);
+                    } catch (IOException ioe) {
+                    
+                    }
+                
+                } else if (key.isReadable()) {
+                
+                
+                
+                }
+                iter.remove();
+            }
+        
         }
-        @Override
-        public void run() {
-            System.out.println("Hello "+ i);
-        }
+    
     }
     
     // TODO

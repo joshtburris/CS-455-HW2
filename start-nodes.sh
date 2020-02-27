@@ -1,5 +1,5 @@
 DIR="$( cd "$( dirname "$0" )" && pwd )"
-JAR_PATH="$DIR/conf/:$DIR/build/libs/CS-455-HW1.jar"
+JAR_PATH="$DIR/conf/:$DIR/build/libs/CS-455-HW2.jar"
 HOSTNAME= cat /proc/sys/kernel/hostname
 MACHINE_LIST="$DIR/conf/machine_list"
 
