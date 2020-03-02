@@ -1,10 +1,11 @@
 package cs455.scaling.server;
 
+import java.util.LinkedList;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ThreadPool {
 
-    private final LinkedBlockingQueue<Runnable> queue;
+    private final LinkedBlockingQueue<LinkedList<Runnable>> queue;
     private final WorkerThread[] workerThreads;
     
     /**
@@ -24,25 +25,16 @@ public class ThreadPool {
     }
     
     /**
-     * This is a blocking method that will only return when the task has been added to the queue.
-     * @param task
+     * This is a non-blocking method that will return whether or not the task has been added to the queue.
+     * @param tasks
+     * @return true if the task was added to the queue, false otherwise.
      */
-    public void queueTask(Runnable task) {
-        // Add the task to the queue with put() because this will block until there is space in the queue.
-        try {
-            queue.put(task);
-        } catch (InterruptedException ie) {
-            System.out.println("InterruptedException: Unable to add task to the queue.");
-        }
-    }
-    
-    /**
-     * This method essentially just calls <code>interrupt()</code> on all of the threads in the pool.
-     */
-    public void interruptAll() {
-        for (int i = 0; i < workerThreads.length; ++i) {
-            workerThreads[i].interrupt();
-        }
+    public boolean queueTasks(LinkedList<Runnable> tasks) {
+        // Add the task to the queue with add() because this will not block but will tell you if your task was
+        // added successfully.
+        if (tasks.size() == 0)
+            return false;
+        return queue.add(tasks);
     }
     
     private class WorkerThread extends Thread {
@@ -53,11 +45,12 @@ public class ThreadPool {
             while (!isInterrupted()) {
                 
                 // Calling queue.take() will block until there is something in the queue to poll.
-                // Once we have successfully polled from the queue we are free to run that task, AKA task.run().
-                Runnable task;
+                // Once we have successfully polled from the queue we are free to run that list of tasks,
+                // AKA task.run().
                 try {
-                    task = queue.take();
-                    task.run();
+                    for (Runnable task : queue.take()) {
+                        task.run();
+                    }
                 } catch (InterruptedException ie) {
                     // Do nothing. This will happen if the thread pool is closed and we want to shut down gracefully.
                 }

@@ -1,10 +1,12 @@
 package cs455.scaling.client;
 
-import cs455.scaling.server.Server;
+import cs455.scaling.util.Constants;
 
 import java.io.IOException;
 import java.net.*;
+import java.nio.ByteBuffer;
 import java.nio.channels.*;
+import java.util.Scanner;
 
 /**
  * Unlike the server node, there are multiple Clients (minimum of 100) in the system. A client provides the following
@@ -29,16 +31,57 @@ public class Client {
     }
     
     public void start() {
+    
+        SocketChannel socketChannel;
         
         try {
-        
-            Selector selector = Selector.open();
-            SocketChannel socketChannel = SocketChannel.open();
+    
+            socketChannel = SocketChannel.open();
             socketChannel.configureBlocking(false);
             socketChannel.connect(new InetSocketAddress(serverHost, serverPort));
+            
+            while (!socketChannel.finishConnect()) {
+                // Do nothing. Wait for the socketChannel to finish connecting. We must do non-blocking I/O.
+            }
+            
+            System.out.println("Successfully connected to server: "+ socketChannel.getRemoteAddress());
         
+        } catch (IOException ioe) {
+            System.out.println("IOException: Unable to connect to server.");
+            return;
+        }
         
-        } catch (IOException ioe) { }
+        ByteBuffer buffer;
+        Scanner in = new Scanner(System.in);
+        String line, response;
+        
+        while (!(line = in.nextLine()).isEmpty()) {
+            try {
+    
+                buffer = ByteBuffer.allocate(Constants.BUFFER_SIZE);
+                for (int i = 0; i < Constants.BUFFER_SIZE; ++i) {
+                    buffer.put((byte)'h');
+                }
+                buffer.flip();
+                while (buffer.hasRemaining()) {
+                    socketChannel.write(buffer);
+                }
+                
+                buffer.clear();
+                
+                int bytesRead = 0;
+                while (buffer.hasRemaining() && bytesRead != -1) {
+                    bytesRead = socketChannel.read(buffer);
+                }
+                
+                response = new String(buffer.array()).trim();
+                System.out.println("Response: "+ response);
+                buffer.clear();
+                
+            } catch (IOException ioe) {
+                System.out.println("IOException: Unable to send message.");
+            }
+        }
         
     }
     
