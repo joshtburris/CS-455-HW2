@@ -8,7 +8,7 @@ public class ThreadPoolManager {
     private final ThreadPool threadPool;
     private final int batchSize;
     private final long batchTime;
-    private final Timer timer;
+    private Timer timer;
     
     public ThreadPoolManager(int threadPoolSize, int batchSize, long batchTime) {
         this.batchSize = batchSize;
@@ -23,14 +23,16 @@ public class ThreadPoolManager {
             
             queue.offer(task);
             
-            if (queue.size() == 1) {
+            if (queue.size() == 1 && batchSize > 1) {
                 timer.schedule(new BatchPushTimerTask(), batchTime);
             }
             
-            if (queue.size() == batchSize) {
+            if (queue.size() >= batchSize) {
                 timer.cancel();
                 threadPool.queueTasks(queue);
                 queue = new LinkedList<>();
+                timer = new Timer();
+                System.out.println("Queue was pushed to thread pool and timer was reset.");
             }
         }
     }
@@ -43,6 +45,8 @@ public class ThreadPoolManager {
                     threadPool.queueTasks(queue);
                     queue = new LinkedList<>();
                     timer.cancel();
+                    timer = new Timer();
+                    System.out.println("Queue was pushed to thread pool because it exceeded its allotted batch time.");
                 }
             }
         }

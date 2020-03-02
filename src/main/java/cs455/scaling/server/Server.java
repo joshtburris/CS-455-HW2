@@ -1,6 +1,7 @@
 package cs455.scaling.server;
 
 import cs455.scaling.util.Constants;
+import cs455.scaling.util.Hashing;
 import cs455.scaling.util.ThroughputStatistics;
 
 import java.io.IOException;
@@ -19,17 +20,14 @@ import java.util.*;
  */
 public class Server implements Node {
     
-    private final int batchSize, batchTime;
-    private final ThreadPool threadPool;
+    private final ThreadPoolManager threadPoolManager;
     private final ThroughputStatistics stats;
     private Selector selector;
     private ServerSocketChannel serverChannel;
     
-    public Server(int portnum, int threadPoolSize, int batchSize, int batchTime) {
-        this.batchSize = batchSize;
-        this.batchTime = batchTime;
+    public Server(int portnum, int threadPoolSize, int batchSize, long batchTime) {
         stats = new ThroughputStatistics();
-        threadPool = new ThreadPool(threadPoolSize);
+        threadPoolManager = new ThreadPoolManager(threadPoolSize, batchSize, batchTime);
     
         try {
             selector = Selector.open();
@@ -73,13 +71,13 @@ public class Server implements Node {
                     
                     RegisterClientTask task = new RegisterClientTask(selector, serverChannel, key);
                     key.attach(task);
-                    threadPool.queueTask(task);
+                    threadPoolManager.queueTask(task);
                     
                 } else if (key.isReadable() && key.attachment() == null) {
     
                     ReadMessageTask task = new ReadMessageTask(key);
                     key.attach(task);
-                    threadPool.queueTask(task);
+                    threadPoolManager.queueTask(task);
                     
                 }
                 
@@ -118,9 +116,9 @@ public class Server implements Node {
     
     private class ReadMessageTask implements Runnable {
         
-        final ByteBuffer buffer;
-        final SelectionKey key;
-        final SocketChannel client;
+        private ByteBuffer buffer;
+        private final SelectionKey key;
+        private final SocketChannel client;
         
         public ReadMessageTask(SelectionKey key) {
             this.buffer = ByteBuffer.allocate(Constants.BUFFER_SIZE);
@@ -134,9 +132,13 @@ public class Server implements Node {
                 int len, bytesRead = 0;
                 while (buffer.hasRemaining() && bytesRead != -1) {
                     bytesRead = client.read(buffer);
+                    if (buffer.position() != 0 && buffer.get(buffer.position()-1) == 4)
+                        break;
                 }
                 
-                buffer.flip();
+                byte[] byteArr = buffer.array();
+                String hash = Hashing.SHA1FromBytes(Arrays.copyOf(byteArr, bytesRead-1));
+                buffer = ByteBuffer.wrap(hash.getBytes());
                 
                 while (buffer.hasRemaining()) {
                     client.write(buffer);
@@ -149,6 +151,7 @@ public class Server implements Node {
                 System.out.println("IOException: Unable to write buffer to client.");
             }
         }
+        
     }
     
     // TODO
@@ -159,16 +162,20 @@ public class Server implements Node {
     public static void main(String[] args) {
     
         // Extract our required arguments and assign them to the correct variables to be used in the server constructor.
-        int portnum, threadPoolSize, batchSize, batchTime;
+        int portnum, threadPoolSize, batchSize;
+        long batchTime;
         try {
             
             portnum = Integer.parseInt(args[0]);
             threadPoolSize = Integer.parseInt(args[1]);
             batchSize = Integer.parseInt(args[2]);
-            batchTime = Integer.parseInt(args[3]);
+            batchTime = Long.parseLong(args[3]);
+            
+            if (portnum < 1024 || portnum > 65535 || threadPoolSize < 1 || batchSize < 1 || batchTime < 1)
+                throw new Exception();
             
         } catch (Exception e) {
-            System.out.println("ERROR: Given arguments were incorrect.");
+            System.out.println("ERROR: Given arguments were unusable.");
             return;
         }
     
@@ -177,18 +184,18 @@ public class Server implements Node {
     
         // Create and start a new timer task to call the server to print and reset it's statistics every 20 seconds.
         Timer timer = new Timer();
-        //timer.scheduleAtFixedRate(new PrintStatsTask(server), 20000L, 20000L);
+        //timer.scheduleAtFixedRate(new PrintStatsTimerTask(server), 20000L, 20000L);
         
         // Meanwhile, we are going to be running the server on this main thread so call it's start() method.
         server.start();
     
     }
     
-    private static class PrintStatsTask extends TimerTask {
+    private static class PrintStatsTimerTask extends TimerTask {
     
         private final Server server;
         
-        public PrintStatsTask(Server server) {
+        public PrintStatsTimerTask(Server server) {
             this.server = server;
         }
         

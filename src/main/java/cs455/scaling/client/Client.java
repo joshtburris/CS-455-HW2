@@ -1,11 +1,13 @@
 package cs455.scaling.client;
 
 import cs455.scaling.util.Constants;
+import cs455.scaling.util.Hashing;
 
 import java.io.IOException;
 import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -57,12 +59,13 @@ public class Client {
         
         while (!(line = in.nextLine()).isEmpty()) {
             try {
-    
-                buffer = ByteBuffer.allocate(Constants.BUFFER_SIZE);
-                for (int i = 0; i < Constants.BUFFER_SIZE; ++i) {
-                    buffer.put((byte)'h');
-                }
-                buffer.flip();
+                
+                System.out.println("Sent: "+ Hashing.SHA1FromBytes(line.getBytes()));
+                
+                byte[] bytes = Arrays.copyOf(line.getBytes(), line.getBytes().length+1);
+                bytes[bytes.length-1] = (byte)4;
+                buffer = ByteBuffer.wrap(bytes);
+                
                 while (buffer.hasRemaining()) {
                     socketChannel.write(buffer);
                 }
@@ -95,9 +98,12 @@ public class Client {
             serverHost = args[0];
             serverPort = Integer.parseInt(args[1]);
             messageRate = Integer.parseInt(args[2]);
+    
+            if (serverPort < 1024 || serverPort > 65535 || messageRate < 1)
+                throw new Exception();
         
         } catch (Exception e) {
-            System.out.println("ERROR: Given arguments were incorrect.");
+            System.out.println("ERROR: Given arguments were unusable.");
             return;
         }
 

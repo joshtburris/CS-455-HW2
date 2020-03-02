@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3504b1c6-f68d-411b-b7d1-ccc7335874d4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/classes/cs455/scaling/server/Server$PrintStatsTask.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/classes/cs455/scaling/server/Server$RegisterClientTask.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPoolManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cs455/scaling/util/Constants.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cs455/scaling/util/Hashing.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/java/main/cs455/scaling/server/Server$PrintStatsTask.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/classes/cs455/scaling/server/Server$PrintStatsTask.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" />
@@ -14,18 +11,22 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/cs455/scaling/client/Client.class" afterPath="$PROJECT_DIR$/build/classes/java/main/cs455/scaling/client/Client.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/cs455/scaling/server/Server$ReadMessageTask.class" afterPath="$PROJECT_DIR$/build/classes/java/main/cs455/scaling/server/Server$ReadMessageTask.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/cs455/scaling/server/Server$RegisterClientTask.class" afterPath="$PROJECT_DIR$/build/classes/java/main/cs455/scaling/server/Server$RegisterClientTask.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/cs455/scaling/server/Server.class" afterPath="$PROJECT_DIR$/build/classes/java/main/cs455/scaling/server/Server.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/cs455/scaling/server/ThreadPool$WorkerThread.class" afterPath="$PROJECT_DIR$/build/classes/java/main/cs455/scaling/server/ThreadPool$WorkerThread.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/cs455/scaling/server/ThreadPool.class" afterPath="$PROJECT_DIR$/build/classes/java/main/cs455/scaling/server/ThreadPool.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/libs/CS-455-HW2.jar" afterPath="$PROJECT_DIR$/build/libs/CS-455-HW2.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/cs455/scaling/client/Client.class" afterPath="$PROJECT_DIR$/out/production/classes/cs455/scaling/client/Client.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/cs455/scaling/server/Server$ReadMessageTask.class" afterPath="$PROJECT_DIR$/out/production/classes/cs455/scaling/server/Server$ReadMessageTask.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/cs455/scaling/server/Server$RegisterClientTask.class" afterPath="$PROJECT_DIR$/out/production/classes/cs455/scaling/server/Server$RegisterClientTask.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/cs455/scaling/server/Server.class" afterPath="$PROJECT_DIR$/out/production/classes/cs455/scaling/server/Server.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/cs455/scaling/server/ThreadPool$WorkerThread.class" afterPath="$PROJECT_DIR$/out/production/classes/cs455/scaling/server/ThreadPool$WorkerThread.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/cs455/scaling/server/ThreadPool.class" afterPath="$PROJECT_DIR$/out/production/classes/cs455/scaling/server/ThreadPool.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cs455/scaling/client/Client.java" afterPath="$PROJECT_DIR$/src/main/java/cs455/scaling/client/Client.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cs455/scaling/server/Server.java" afterPath="$PROJECT_DIR$/src/main/java/cs455/scaling/server/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPool.java" afterPath="$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPool.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPoolManager.java" afterPath="$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPoolManager.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -47,28 +48,26 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="27" column="49" lean-forward="false" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="49" />
+            <state relative-caret-position="279">
+              <caret line="140" column="0" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#Server#0" expanded="false" />
                 <element signature="method#Server#0;class#Server#0" expanded="false" />
                 <element signature="method#start#0;class#Server#0" expanded="false" />
-                <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
                 <element signature="method#RegisterClientTask#0;class#RegisterClientTask#0;class#Server#0" expanded="false" />
-                <element signature="method#ReadMessageTask#0;class#ReadMessageTask#0;class#Server#0" expanded="false" />
                 <element signature="method#main#0;class#Server#0" expanded="false" />
-                <element signature="class#PrintStatsTask#0;class#Server#0" expanded="false" />
+                <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="618">
-              <caret line="69" column="31" lean-forward="false" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
+            <state relative-caret-position="380">
+              <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#Client#0" expanded="false" />
@@ -79,27 +78,27 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ThreadPoolManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPoolManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="446">
+              <caret line="47" column="40" lean-forward="false" selection-start-line="47" selection-start-column="40" selection-end-line="47" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ThreadPool.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPool.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="35" column="25" lean-forward="true" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
+            <state relative-caret-position="100">
+              <caret line="41" column="37" lean-forward="false" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#ThreadPool#0;class#ThreadPool#0" expanded="false" />
                 <element signature="method#ThreadPool#0;class#ThreadPool#0" expanded="false" />
                 <element signature="docComment;method#queueTasks#0;class#ThreadPool#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ThreadPoolManager.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPoolManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -405,11 +404,11 @@
         <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/server/Node.java" />
         <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/util/ThroughputStatistics.java" />
         <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/util/Constants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/server/Server.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/client/Client.java" />
         <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/util/Hashing.java" />
         <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPool.java" />
         <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPoolManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/client/Client.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/server/Server.java" />
       </list>
     </option>
   </component>
@@ -423,7 +422,7 @@
     <option name="x" value="1279" />
     <option name="y" value="31" />
     <option name="width" value="1281" />
-    <option name="height" value="1358" />
+    <option name="height" value="870" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -569,7 +568,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="cs455.scaling.client.Client" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="jakarta 1024 1" />
+      <option name="PROGRAM_PARAMETERS" value="hong-kong 1024 1" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -588,7 +587,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="cs455.scaling.server.Server" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="1024 5 5 5" />
+      <option name="PROGRAM_PARAMETERS" value="1024 5 5 3000" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -705,27 +704,28 @@
       <workItem from="1583009511826" duration="8120000" />
       <workItem from="1583093797612" duration="1834000" />
       <workItem from="1583095715658" duration="12680000" />
-      <workItem from="1583122255526" duration="10503000" />
+      <workItem from="1583122255526" duration="17600000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53334000" />
+    <option name="totallyTimeSpent" value="60431000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1279" y="31" width="1281" height="1358" extended-state="0" />
+    <frame x="1279" y="31" width="1281" height="870" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291874" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913166" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2636816" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26289517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14890155" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -735,13 +735,12 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39966834" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39915967" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -756,13 +755,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/Server.java</url>
-          <line>134</line>
+          <url>file://$PROJECT_DIR$/src/main/java/cs455/scaling/client/Client.java</url>
+          <line>62</line>
           <properties />
-          <option name="timeStamp" value="16" />
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="19" />
+      <option name="time" value="24" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -776,11 +775,9 @@
             <element signature="docComment;class#Server#0" expanded="false" />
             <element signature="method#Server#0;class#Server#0" expanded="false" />
             <element signature="method#start#0;class#Server#0" expanded="false" />
-            <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="method#RegisterClientTask#0;class#RegisterClientTask#0;class#Server#0" expanded="false" />
-            <element signature="method#ReadMessageTask#0;class#ReadMessageTask#0;class#Server#0" expanded="false" />
             <element signature="method#main#0;class#Server#0" expanded="false" />
-            <element signature="class#PrintStatsTask#0;class#Server#0" expanded="false" />
+            <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -830,11 +827,9 @@
             <element signature="docComment;class#Server#0" expanded="false" />
             <element signature="method#Server#0;class#Server#0" expanded="false" />
             <element signature="method#start#0;class#Server#0" expanded="false" />
-            <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="method#RegisterClientTask#0;class#RegisterClientTask#0;class#Server#0" expanded="false" />
-            <element signature="method#ReadMessageTask#0;class#ReadMessageTask#0;class#Server#0" expanded="false" />
             <element signature="method#main#0;class#Server#0" expanded="false" />
-            <element signature="class#PrintStatsTask#0;class#Server#0" expanded="false" />
+            <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -874,11 +869,9 @@
             <element signature="docComment;class#Server#0" expanded="false" />
             <element signature="method#Server#0;class#Server#0" expanded="false" />
             <element signature="method#start#0;class#Server#0" expanded="false" />
-            <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="method#RegisterClientTask#0;class#RegisterClientTask#0;class#Server#0" expanded="false" />
-            <element signature="method#ReadMessageTask#0;class#ReadMessageTask#0;class#Server#0" expanded="false" />
             <element signature="method#main#0;class#Server#0" expanded="false" />
-            <element signature="class#PrintStatsTask#0;class#Server#0" expanded="false" />
+            <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -918,11 +911,9 @@
             <element signature="docComment;class#Server#0" expanded="false" />
             <element signature="method#Server#0;class#Server#0" expanded="false" />
             <element signature="method#start#0;class#Server#0" expanded="false" />
-            <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="method#RegisterClientTask#0;class#RegisterClientTask#0;class#Server#0" expanded="false" />
-            <element signature="method#ReadMessageTask#0;class#ReadMessageTask#0;class#Server#0" expanded="false" />
             <element signature="method#main#0;class#Server#0" expanded="false" />
-            <element signature="class#PrintStatsTask#0;class#Server#0" expanded="false" />
+            <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -949,11 +940,9 @@
             <element signature="docComment;class#Server#0" expanded="false" />
             <element signature="method#Server#0;class#Server#0" expanded="false" />
             <element signature="method#start#0;class#Server#0" expanded="false" />
-            <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="method#RegisterClientTask#0;class#RegisterClientTask#0;class#Server#0" expanded="false" />
-            <element signature="method#ReadMessageTask#0;class#ReadMessageTask#0;class#Server#0" expanded="false" />
             <element signature="method#main#0;class#Server#0" expanded="false" />
-            <element signature="class#PrintStatsTask#0;class#Server#0" expanded="false" />
+            <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -980,11 +969,9 @@
             <element signature="docComment;class#Server#0" expanded="false" />
             <element signature="method#Server#0;class#Server#0" expanded="false" />
             <element signature="method#start#0;class#Server#0" expanded="false" />
-            <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="method#RegisterClientTask#0;class#RegisterClientTask#0;class#Server#0" expanded="false" />
-            <element signature="method#ReadMessageTask#0;class#ReadMessageTask#0;class#Server#0" expanded="false" />
             <element signature="method#main#0;class#Server#0" expanded="false" />
-            <element signature="class#PrintStatsTask#0;class#Server#0" expanded="false" />
+            <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1032,6 +1019,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
           <caret line="210" column="0" lean-forward="false" selection-start-line="210" selection-start-column="0" selection-end-line="210" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1074,41 +1062,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/client/Client.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPoolManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="618">
-          <caret line="69" column="31" lean-forward="false" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#Client#0" expanded="false" />
-            <element signature="method#Client#0;class#Client#0" expanded="false" />
-            <element signature="method#main#0;class#Client#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="27" column="49" lean-forward="false" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#Server#0" expanded="false" />
-            <element signature="method#Server#0;class#Server#0" expanded="false" />
-            <element signature="method#start#0;class#Server#0" expanded="false" />
-            <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
-            <element signature="method#RegisterClientTask#0;class#RegisterClientTask#0;class#Server#0" expanded="false" />
-            <element signature="method#ReadMessageTask#0;class#ReadMessageTask#0;class#Server#0" expanded="false" />
-            <element signature="method#main#0;class#Server#0" expanded="false" />
-            <element signature="class#PrintStatsTask#0;class#Server#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="446">
+          <caret line="47" column="40" lean-forward="false" selection-start-line="47" selection-start-column="40" selection-end-line="47" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="35" column="25" lean-forward="true" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
+        <state relative-caret-position="100">
+          <caret line="41" column="37" lean-forward="false" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#ThreadPool#0;class#ThreadPool#0" expanded="false" />
@@ -1118,11 +1083,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPoolManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="279">
+          <caret line="140" column="0" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#Server#0" expanded="false" />
+            <element signature="method#Server#0;class#Server#0" expanded="false" />
+            <element signature="method#start#0;class#Server#0" expanded="false" />
+            <element signature="method#RegisterClientTask#0;class#RegisterClientTask#0;class#Server#0" expanded="false" />
+            <element signature="method#main#0;class#Server#0" expanded="false" />
+            <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#Client#0" expanded="false" />
+            <element signature="method#Client#0;class#Client#0" expanded="false" />
+            <element signature="method#main#0;class#Client#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
