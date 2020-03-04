@@ -1,12 +1,9 @@
 package cs455.scaling.server;
 
-import cs455.scaling.util.Constants;
-import cs455.scaling.util.Hashing;
-import cs455.scaling.util.ThroughputStatistics;
+import cs455.scaling.util.*;
 
 import java.io.IOException;
 import java.net.*;
-import java.nio.*;
 import java.nio.channels.*;
 import java.util.*;
 
@@ -21,7 +18,7 @@ import java.util.*;
 public class Server implements Node {
     
     private final ThreadPoolManager threadPoolManager;
-    private final ThroughputStatistics stats;
+    public final ThroughputStatistics stats;
     private Selector selector;
     private ServerSocketChannel serverChannel;
     
@@ -69,13 +66,13 @@ public class Server implements Node {
                 
                 if (key.isAcceptable() && key.attachment() == null) {
                     
-                    RegisterClientTask task = new RegisterClientTask(selector, serverChannel, key);
+                    RegisterClientTask task = new RegisterClientTask(selector, serverChannel, key, stats);
                     key.attach(task);
                     threadPoolManager.queueTask(task);
                     
                 } else if (key.isReadable() && key.attachment() == null) {
     
-                    ReadMessageTask task = new ReadMessageTask(key);
+                    ReadMessageTask task = new ReadMessageTask(key, stats);
                     key.attach(task);
                     threadPoolManager.queueTask(task);
                     
@@ -90,14 +87,17 @@ public class Server implements Node {
     
     private class RegisterClientTask implements Runnable {
         
-        Selector selector;
-        ServerSocketChannel serverChannel;
-        SelectionKey key;
+        private final Selector selector;
+        private final ServerSocketChannel serverChannel;
+        private final SelectionKey key;
+        private final ThroughputStatistics stats;
     
-        public RegisterClientTask(Selector selector, ServerSocketChannel serverChannel, SelectionKey key) {
+        public RegisterClientTask(Selector selector, ServerSocketChannel serverChannel, SelectionKey key,
+                                  ThroughputStatistics stats) {
             this.selector = selector;
             this.serverChannel = serverChannel;
             this.key = key;
+            this.stats = stats;
         }
     
         @Override public void run() {
@@ -107,56 +107,45 @@ public class Server implements Node {
                 client.configureBlocking(false);
                 client.register(selector, SelectionKey.OP_READ);
                 key.attach(null);
+                stats.registerNewClient(client.getRemoteAddress().toString());
                 
             } catch (Exception ioe) {
-                System.out.println("IOException: Unable to accept new client from the ServerSocketChannel.");
+                System.out.println("IOException: Unable to accept new client from the ServerSocketChannel, or " +
+                        "socketChannel could not get remote address.");
             }
         }
     }
     
     private class ReadMessageTask implements Runnable {
         
-        private ByteBuffer buffer;
         private final SelectionKey key;
-        private final SocketChannel client;
+        private final SocketChannel socketChannel;
+        private final MessageStream messageStream;
+        private final ThroughputStatistics stats;
         
-        public ReadMessageTask(SelectionKey key) {
-            this.buffer = ByteBuffer.allocate(Constants.BUFFER_SIZE);
+        public ReadMessageTask(SelectionKey key, ThroughputStatistics stats) {
             this.key = key;
-            this.client = (SocketChannel) key.channel();
+            this.socketChannel = (SocketChannel) key.channel();
+            this.messageStream = new MessageStream(socketChannel);
+            this.stats = stats;
         }
         
         @Override public void run() {
+            
+            byte[] byteArray = messageStream.readByteArray();
+            String hash = Hashing.SHA1FromBytes(byteArray);
+            
+            messageStream.writeString(hash);
+            key.attach(null);
+            
             try {
-                
-                int len, bytesRead = 0;
-                while (buffer.hasRemaining() && bytesRead != -1) {
-                    bytesRead = client.read(buffer);
-                    if (buffer.position() != 0 && buffer.get(buffer.position()-1) == 4)
-                        break;
-                }
-                
-                byte[] byteArr = buffer.array();
-                String hash = Hashing.SHA1FromBytes(Arrays.copyOf(byteArr, bytesRead-1));
-                buffer = ByteBuffer.wrap(hash.getBytes());
-                
-                while (buffer.hasRemaining()) {
-                    client.write(buffer);
-                }
-                
-                key.attach(null);
-                buffer.clear();
-                
+                stats.incrementNumMessages(socketChannel.getRemoteAddress().toString());
             } catch (IOException ioe) {
-                System.out.println("IOException: Unable to write buffer to client.");
+                System.out.println("IOException: socketChannel could not get remote address.");
             }
+            
         }
         
-    }
-    
-    // TODO
-    public void printAndResetStatistics() {
-        stats.printAndResetStatistics();
     }
     
     public static void main(String[] args) {
@@ -184,7 +173,7 @@ public class Server implements Node {
     
         // Create and start a new timer task to call the server to print and reset it's statistics every 20 seconds.
         Timer timer = new Timer();
-        //timer.scheduleAtFixedRate(new PrintStatsTimerTask(server), 20000L, 20000L);
+        timer.scheduleAtFixedRate(new PrintStatsTimerTask(server.stats), 20000L, 20000L);
         
         // Meanwhile, we are going to be running the server on this main thread so call it's start() method.
         server.start();
@@ -193,14 +182,14 @@ public class Server implements Node {
     
     private static class PrintStatsTimerTask extends TimerTask {
     
-        private final Server server;
+        private final ThroughputStatistics stats;
         
-        public PrintStatsTimerTask(Server server) {
-            this.server = server;
+        public PrintStatsTimerTask(ThroughputStatistics stats) {
+            this.stats = stats;
         }
         
         @Override public void run() {
-            server.printAndResetStatistics();
+            stats.printAndResetStatistics();
             System.out.println();
         }
     }
