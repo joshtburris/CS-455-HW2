@@ -22,7 +22,6 @@ public class ThroughputStatistics {
         synchronized (map) {
             map.put(client, 0);
         }
-        System.out.println("Registered new client: "+ client);
     }
     
     public void printAndReset() {

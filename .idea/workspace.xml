@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3504b1c6-f68d-411b-b7d1-ccc7335874d4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/java/main/cs455/scaling/util/ThroughputStatistics.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cs455/scaling/client/Client.java" afterPath="$PROJECT_DIR$/src/main/java/cs455/scaling/client/Client.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cs455/scaling/server/MessageStream.java" afterPath="$PROJECT_DIR$/src/main/java/cs455/scaling/server/MessageStream.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThroughputStatistics.java" afterPath="$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThroughputStatistics.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -26,8 +25,8 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="167" column="19" lean-forward="true" selection-start-line="167" selection-start-column="19" selection-end-line="167" selection-end-column="19" />
+            <state relative-caret-position="425">
+              <caret line="150" column="43" lean-forward="false" selection-start-line="150" selection-start-column="43" selection-end-line="150" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#Server#0" expanded="false" />
@@ -35,6 +34,7 @@
                 <element signature="method#start#0;class#Server#0" expanded="false" />
                 <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
                 <element signature="class#ReadMessageTask#0;class#Server#0" expanded="false" />
+                <element signature="method#main#0;class#Server#0" expanded="false" />
                 <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
               </folding>
             </state>
@@ -44,8 +44,8 @@
       <file leaf-file-name="ThroughputStatistics.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThroughputStatistics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+            <state relative-caret-position="306">
+              <caret line="20" column="49" lean-forward="false" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#registerNewClient#0;class#ThroughputStatistics#0" expanded="false" />
@@ -379,9 +379,9 @@
         <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPoolManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/server/Server.java" />
         <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/util/ThroughputStatistics.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/server/MessageStream.java" />
         <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/client/MessagingStatistics.java" />
         <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/client/Client.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/server/MessageStream.java" />
         <option value="$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThroughputStatistics.java" />
       </list>
     </option>
@@ -687,12 +687,12 @@
       <workItem from="1583204270544" duration="910000" />
       <workItem from="1583308327523" duration="8988000" />
       <workItem from="1583699695500" duration="15502000" />
-      <workItem from="1583726837952" duration="3274000" />
+      <workItem from="1583726837952" duration="4108000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89140000" />
+    <option name="totallyTimeSpent" value="89974000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="31" width="1280" height="1362" extended-state="0" />
@@ -708,7 +708,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913166" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15505804" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15505804" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15553746" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -718,7 +718,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3490879" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3490879" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -787,6 +787,7 @@
             <element signature="method#start#0;class#Server#0" expanded="false" />
             <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="class#ReadMessageTask#0;class#Server#0" expanded="false" />
+            <element signature="method#main#0;class#Server#0" expanded="false" />
             <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
           </folding>
         </state>
@@ -867,6 +868,7 @@
             <element signature="method#start#0;class#Server#0" expanded="false" />
             <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="class#ReadMessageTask#0;class#Server#0" expanded="false" />
+            <element signature="method#main#0;class#Server#0" expanded="false" />
             <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
           </folding>
         </state>
@@ -923,6 +925,7 @@
             <element signature="method#start#0;class#Server#0" expanded="false" />
             <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="class#ReadMessageTask#0;class#Server#0" expanded="false" />
+            <element signature="method#main#0;class#Server#0" expanded="false" />
             <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
           </folding>
         </state>
@@ -979,6 +982,7 @@
             <element signature="method#start#0;class#Server#0" expanded="false" />
             <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="class#ReadMessageTask#0;class#Server#0" expanded="false" />
+            <element signature="method#main#0;class#Server#0" expanded="false" />
             <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
           </folding>
         </state>
@@ -1033,6 +1037,7 @@
             <element signature="method#start#0;class#Server#0" expanded="false" />
             <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="class#ReadMessageTask#0;class#Server#0" expanded="false" />
+            <element signature="method#main#0;class#Server#0" expanded="false" />
             <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
           </folding>
         </state>
@@ -1079,6 +1084,7 @@
             <element signature="method#start#0;class#Server#0" expanded="false" />
             <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="class#ReadMessageTask#0;class#Server#0" expanded="false" />
+            <element signature="method#main#0;class#Server#0" expanded="false" />
             <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
           </folding>
         </state>
@@ -1125,6 +1131,7 @@
             <element signature="method#start#0;class#Server#0" expanded="false" />
             <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="class#ReadMessageTask#0;class#Server#0" expanded="false" />
+            <element signature="method#main#0;class#Server#0" expanded="false" />
             <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
           </folding>
         </state>
@@ -1158,6 +1165,7 @@
             <element signature="method#start#0;class#Server#0" expanded="false" />
             <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="class#ReadMessageTask#0;class#Server#0" expanded="false" />
+            <element signature="method#main#0;class#Server#0" expanded="false" />
             <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
           </folding>
         </state>
@@ -1191,6 +1199,7 @@
             <element signature="method#start#0;class#Server#0" expanded="false" />
             <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="class#ReadMessageTask#0;class#Server#0" expanded="false" />
+            <element signature="method#main#0;class#Server#0" expanded="false" />
             <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
           </folding>
         </state>
@@ -1274,31 +1283,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="41" column="37" lean-forward="false" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#ThreadPool#0;class#ThreadPool#0" expanded="false" />
-            <element signature="method#ThreadPool#0;class#ThreadPool#0" expanded="false" />
-            <element signature="docComment;method#queueTasks#0;class#ThreadPool#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/MessageStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="20" column="49" lean-forward="false" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#readByteArray#0;class#MessageStream#0" expanded="false" />
-            <element signature="method#writeByteArray#0;class#MessageStream#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPoolManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -1325,8 +1309,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="167" column="19" lean-forward="true" selection-start-line="167" selection-start-column="19" selection-end-line="167" selection-end-column="19" />
+        <state relative-caret-position="425">
+          <caret line="150" column="43" lean-forward="false" selection-start-line="150" selection-start-column="43" selection-end-line="150" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#Server#0" expanded="false" />
@@ -1334,7 +1318,33 @@
             <element signature="method#start#0;class#Server#0" expanded="false" />
             <element signature="class#RegisterClientTask#0;class#Server#0" expanded="false" />
             <element signature="class#ReadMessageTask#0;class#Server#0" expanded="false" />
+            <element signature="method#main#0;class#Server#0" expanded="false" />
             <element signature="class#PrintStatsTimerTask#0;class#Server#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/MessageStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="56" column="43" lean-forward="false" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#readByteArray#0;class#MessageStream#0" expanded="false" />
+            <element signature="method#writeByteArray#0;class#MessageStream#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThreadPool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="41" column="37" lean-forward="false" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#ThreadPool#0;class#ThreadPool#0" expanded="false" />
+            <element signature="method#ThreadPool#0;class#ThreadPool#0" expanded="false" />
+            <element signature="docComment;method#queueTasks#0;class#ThreadPool#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1358,8 +1368,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/ThroughputStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+        <state relative-caret-position="306">
+          <caret line="20" column="49" lean-forward="false" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#registerNewClient#0;class#ThroughputStatistics#0" expanded="false" />

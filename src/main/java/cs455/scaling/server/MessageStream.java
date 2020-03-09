@@ -38,8 +38,6 @@ public class MessageStream {
                 if (readBuffer.hasArray())
                     byteArray = Arrays.copyOf(readBuffer.array(), readBuffer.array().length);
                 
-                //System.out.println("Read: "+ byteArray.length);
-        
             } catch (IOException ioe) {
                 System.out.println("IOException: Unable to read from socketChannel.");
             }
@@ -65,8 +63,6 @@ public class MessageStream {
                 while (writeBuffer.hasRemaining()) {
                     socketChannel.write(writeBuffer);
                 }
-    
-                //System.out.println("Wrote: "+ writeBuffer.array().length);
                 
             } catch (IOException ioe) {
                 System.out.println("IOException: Unable to write to socketChannel.");
