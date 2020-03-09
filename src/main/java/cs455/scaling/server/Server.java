@@ -189,7 +189,7 @@ public class Server {
         }
         
         @Override public void run() {
-            stats.printAndResetStatistics();
+            stats.printAndReset();
             System.out.println();
         }
     }

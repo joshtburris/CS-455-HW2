@@ -1,4 +1,4 @@
-package cs455.scaling.util;
+package cs455.scaling.server;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -25,18 +25,19 @@ public class ThroughputStatistics {
         System.out.println("Registered new client: "+ client);
     }
     
-    public void printAndResetStatistics() {
+    public void printAndReset() {
         
         // Create temporary variables for our atomic ones.
-        double x = 0.0, y, mean, stdDev = 0.0;
+        int x = 0, y;
+        double mean, stdDev = 0.0;
         
         synchronized (map) {
             for (Integer i : map.values()) {
-                x += i.doubleValue();
+                x += i;
             }
             
-            y = (double) map.size();
-            mean = (y != 0) ? x / y : 0;
+            y = map.size();
+            mean = (y != 0) ? (double)x / (double)y : 0;
             
             for (Entry<String, Integer> e : map.entrySet()) {
                 stdDev += Math.pow(e.getValue().doubleValue() - mean, 2);

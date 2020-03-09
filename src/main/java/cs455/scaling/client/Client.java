@@ -28,11 +28,13 @@ public class Client {
     private final LinkedBlockingQueue<String> hashCodes = new LinkedBlockingQueue<>();
     private final Random rand = new Random();
     private MessageStream messageStream;
+    public final MessagingStatistics stats;
     
     public Client(String serverHost, int serverPort, int messageRate) {
         this.serverHost = serverHost;
         this.serverPort = serverPort;
         this.messageRate = messageRate;
+        this.stats  = new MessagingStatistics();
     }
     
     public void start() {
@@ -64,7 +66,7 @@ public class Client {
         for (double i = doubleRate; i < 1.0+doubleRate; i += doubleRate) {
         
             Timer t = new Timer();
-            t.scheduleAtFixedRate(new SendMessageTimerTask(messageStream), Math.round(i * 1000), 1L);
+            t.scheduleAtFixedRate(new SendMessageTimerTask(messageStream), Math.round(i * 1000), 1000L);
             timers.add(t);
         
         }
@@ -119,8 +121,25 @@ public class Client {
         }
 
         Client client = new Client(serverHost, serverPort, messageRate);
+        
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new PrintStatsTimerTask(client.stats), 20000L, 20000L);
+        
         client.start();
         
+    }
+    
+    private static class PrintStatsTimerTask extends TimerTask {
+        
+        private final MessagingStatistics stats;
+        
+        public PrintStatsTimerTask(MessagingStatistics stats) {
+            this.stats = stats;
+        }
+    
+        @Override public void run() {
+            stats.print();
+        }
     }
     
 }

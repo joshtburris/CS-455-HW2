@@ -29,7 +29,7 @@ public class MessageStream {
                 // Continuously read from the socketChannel into the buffer until there is nothing more to read, AKA the
                 // buffer gets full or we receive an EndOfTransmission byte (4).
                 int bytesRead = 0;
-                while (readBuffer.hasRemaining() && bytesRead != -1) {
+                while (readBuffer.hasRemaining() && bytesRead >= 0) {
                     bytesRead += socketChannel.read(readBuffer);
                     if (bytesRead != 0 && readBuffer.get(bytesRead - 1) == 4)
                         break;
