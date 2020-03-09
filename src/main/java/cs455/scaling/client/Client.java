@@ -74,7 +74,10 @@ public class Client {
         while (true) {
             
             String hash = messageStream.readString();
-            hashCodes.remove(hash);
+            if (hashCodes.remove(hash))
+                stats.incrementNumReceived();
+            else
+                System.out.println("Hash code received was not in our linked list.");
         
         }
         
@@ -97,6 +100,8 @@ public class Client {
             hashCodes.add(hash);
             
             messageStream.writeByteArray(byteArray);
+            
+            stats.incrementNumSent();
             
         }
     }

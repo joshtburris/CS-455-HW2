@@ -45,7 +45,7 @@ public class ThroughputStatistics {
             }
         }
         
-        stdDev = (y != 0 && y != 1) ? Math.sqrt( (1/(y-1)) * stdDev ) : 0;
+        stdDev = (y != 0 && y != 1) ? Math.sqrt( (1.0/((double)y-1.0)) * stdDev ) : 0.0;
         
         System.out.print("["+ new Date().toString() +"] ");
         System.out.print("Server Throughput: "+ x +" message(s), ");
