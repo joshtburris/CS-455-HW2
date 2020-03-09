@@ -133,9 +133,9 @@ public class Server {
         @Override public void run() {
             
             byte[] byteArray = messageStream.readByteArray();
-            String hash = Hashing.SHA1FromBytes(byteArray);
+            Hashing hashing = new Hashing(byteArray);
             
-            messageStream.writeString(hash);
+            messageStream.writeString(hashing.getHash());
             key.attach(null);
             
             try {

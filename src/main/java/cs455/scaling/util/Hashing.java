@@ -6,7 +6,17 @@ import java.security.NoSuchAlgorithmException;
 
 public class Hashing {
     
-    public static String SHA1FromBytes(byte[] data) {
+    private final String hash;
+    
+    public Hashing(byte[] data) {
+        hash = SHA1FromBytes(data);
+    }
+    
+    public String getHash() {
+        return hash;
+    }
+    
+    private String SHA1FromBytes(byte[] data) {
     
         MessageDigest digest;
         try {
@@ -20,10 +30,11 @@ public class Hashing {
         BigInteger hashInt = new BigInteger(1, hashBytes);
         String hash = hashInt.toString(16);
     
-        while (hash.length() < 40)
+        while (hash.length() < Constants.HASH_BUFFER_SIZE)
             hash = "0"+ hash;
         
-        assert hash.length() == 40;
+        assert data.length == Constants.BYTE_ARRAY_BUFFER_SIZE : "Data byte array had an invalid length";
+        assert hash.length() == Constants.HASH_BUFFER_SIZE : "Hash string returned an invalid result";
         
         return hash;
     }

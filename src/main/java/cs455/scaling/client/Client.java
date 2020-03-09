@@ -49,6 +49,7 @@ public class Client {
             
             while (!socketChannel.finishConnect()) {
                 // Do nothing. Wait for the socketChannel to finish connecting. We must do non-blocking I/O.
+                // Turns out this doesn't do what I thought it did.
             }
     
             messageStream = new MessageStream(socketChannel);
@@ -60,7 +61,7 @@ public class Client {
             return;
         }
     
-        ArrayList<Timer> timers = new ArrayList<>();
+        ArrayList<Timer> timers = new ArrayList<>(messageRate);
         double doubleRate = 1.0 / (double)messageRate;
         
         for (double i = doubleRate; i < 1.0+doubleRate; i += doubleRate) {
@@ -71,13 +72,22 @@ public class Client {
         
         }
         
-        while (true) {
-            
-            String hash = messageStream.readString();
-            if (hashCodes.remove(hash))
-                stats.incrementNumReceived();
-            else
-                System.out.println("Hash code received was not in our linked list.");
+        try {
+            while (true) {
+        
+                String hash = messageStream.readString();
+                if (hashCodes.contains(hash)) {
+                    hashCodes.remove(hash);
+                    stats.incrementNumReceived();
+                } else {
+                    System.out.println("ERROR: Hash code received was not in our linked list.");
+                    System.out.println("Queue: " + hashCodes);
+                    System.out.println("Hash: " + hash);
+                    System.out.println();
+                }
+        
+            }
+        } catch (Exception e) {
         
         }
         
@@ -95,9 +105,9 @@ public class Client {
             
             byte[] byteArray = new byte[Constants.BYTE_ARRAY_BUFFER_SIZE];
             rand.nextBytes(byteArray);
-            
-            String hash = Hashing.SHA1FromBytes(byteArray);
-            hashCodes.add(hash);
+    
+            Hashing hashing = new Hashing(byteArray);
+            hashCodes.add(hashing.getHash());
             
             messageStream.writeByteArray(byteArray);
             
