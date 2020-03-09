@@ -15,7 +15,7 @@ import java.util.*;
  *      D. Replies to clients by sending back a hash code for each message received.
  *      E. The server performs functions A, B, C, and D by relying on the thread pool.
  */
-public class Server implements Node {
+public class Server {
     
     private final ThreadPoolManager threadPoolManager;
     public final ThroughputStatistics stats;
@@ -68,7 +68,7 @@ public class Server implements Node {
                     
                     RegisterClientTask task = new RegisterClientTask(selector, serverChannel, key, stats);
                     key.attach(task);
-                    threadPoolManager.queueTask(task);
+                    threadPoolManager.queueTask(task, true);
                     
                 } else if (key.isReadable() && key.attachment() == null) {
     

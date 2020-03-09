@@ -5,96 +5,77 @@ import cs455.scaling.util.Constants;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import java.util.Arrays;
 
 public class MessageStream {
     
-    private SocketChannel socketChannel;
-    private ByteBuffer buffer;
-    private String remoteSocketAddress;
+    private final SocketChannel socketChannel;
+    private ByteBuffer readBuffer, writeBuffer;
+    private final Object readLock = new Object();
+    private final Object writeLock = new Object();
     
     public MessageStream(SocketChannel socketChannel) {
         this.socketChannel = socketChannel;
-        this.buffer = ByteBuffer.allocate(Constants.BUFFER_SIZE);
-        try {
-            this.remoteSocketAddress = socketChannel.getRemoteAddress().toString();
-        } catch (IOException ioe) {
-            System.out.println("IOException: socketChannel could not get the remote address.");
-            this.remoteSocketAddress = "UNKNOWN_HOST";
-        }
     }
     
-    public String getRemoteSocketAddress() {
-        return remoteSocketAddress;
+    private byte[] readByteArray(int bufferSize) {
+        synchronized (readLock) {
+    
+            byte[] byteArray = new byte[0];
+            readBuffer = ByteBuffer.allocate(bufferSize);
+    
+            try {
+        
+                // Continuously read from the socketChannel into the buffer until there is nothing more to read, AKA the
+                // buffer gets full or we receive an EndOfTransmission byte (4).
+                int bytesRead = 0;
+                while (readBuffer.hasRemaining() && bytesRead != -1) {
+                    bytesRead += socketChannel.read(readBuffer);
+                    if (bytesRead != 0 && readBuffer.get(bytesRead - 1) == 4)
+                        break;
+                }
+        
+                if (readBuffer.hasArray())
+                    byteArray = Arrays.copyOf(readBuffer.array(), readBuffer.array().length);
+                
+                //System.out.println("Read: "+ byteArray.length);
+        
+            } catch (IOException ioe) {
+                System.out.println("IOException: Unable to read from socketChannel.");
+            }
+    
+            return byteArray;
+        }
     }
     
     public byte[] readByteArray() {
-    
-        byte[] byteArray = new byte[0];
-    
-        try {
-            
-            // Continuously read from the socketChannel into the buffer until there is nothing more to read, AKA the
-            // buffer gets full or we receive an EndOfTransmission byte (4).
-            int bytesRead = 0;
-            while (buffer.hasRemaining() && bytesRead != -1) {
-                bytesRead += socketChannel.read(buffer);
-                if (bytesRead != 0 && buffer.get(bytesRead - 1) == 4)
-                    break;
-            }
-            
-            if (buffer.hasArray())
-                byteArray = buffer.array();
-            buffer.clear();
-            
-        } catch (IOException ioe) {
-            System.out.println("IOException: Unable to read from socketChannel.");
-        }
-        
-        return byteArray;
+        return readByteArray(Constants.BYTE_ARRAY_BUFFER_SIZE);
     }
     
     public String readString() {
+        return new String(readByteArray(Constants.HASH_BUFFER_SIZE)).trim();
+    }
     
-        String str = "";
+    public void writeByteArray(byte[] arr) {
+        synchronized (writeLock) {
+            try {
     
-        try {
+                writeBuffer = ByteBuffer.wrap(arr);
         
-            // Continuously read from the socketChannel into the buffer until there is nothing more to read, AKA the
-            // buffer gets full or we receive an EndOfTransmission byte (4).
-            int bytesRead = 0;
-            while (buffer.hasRemaining() && bytesRead != -1) {
-                bytesRead += socketChannel.read(buffer);
-                if (bytesRead != 0 && buffer.get(bytesRead - 1) == 4)
-                    break;
+                while (writeBuffer.hasRemaining()) {
+                    socketChannel.write(writeBuffer);
+                }
+    
+                //System.out.println("Wrote: "+ writeBuffer.array().length);
+                
+            } catch (IOException ioe) {
+                System.out.println("IOException: Unable to write to socketChannel.");
             }
-        
-            if (buffer.hasArray())
-                str = new String(buffer.array()).trim();
-            buffer.clear();
-        
-        } catch (IOException ioe) {
-            System.out.println("IOException: Unable to read from socketChannel.");
         }
-    
-        return str;
     }
     
     public void writeString(String str) {
-    
-        try {
-    
-            buffer = ByteBuffer.wrap(str.getBytes());
-    
-            while (buffer.hasRemaining()) {
-                socketChannel.write(buffer);
-            }
-    
-            buffer.clear();
-            
-        } catch (IOException ioe) {
-            System.out.println("IOException: Unable to write to socketChannel.");
-        }
-    
+        writeByteArray(str.getBytes());
     }
     
 }

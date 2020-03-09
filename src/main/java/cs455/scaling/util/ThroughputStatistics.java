@@ -22,6 +22,7 @@ public class ThroughputStatistics {
         synchronized (map) {
             map.put(client, 0);
         }
+        System.out.println("Registered new client: "+ client);
     }
     
     public void printAndResetStatistics() {
@@ -35,7 +36,7 @@ public class ThroughputStatistics {
             }
             
             y = (double) map.size();
-            mean = x / y;
+            mean = (y != 0) ? x / y : 0;
             
             for (Entry<String, Integer> e : map.entrySet()) {
                 stdDev += Math.pow(e.getValue().doubleValue() - mean, 2);
@@ -43,11 +44,11 @@ public class ThroughputStatistics {
             }
         }
         
-        stdDev = Math.sqrt( (1/(y-1)) * stdDev );
+        stdDev = (y != 0 && y != 1) ? Math.sqrt( (1/(y-1)) * stdDev ) : 0;
         
         System.out.print("["+ new Date().toString() +"] ");
         System.out.print("Server Throughput: "+ x +" message(s), ");
-        System.out.print("Active Client Connections: "+ y +" ");
+        System.out.print("Active Client Connections: "+ y +", ");
         System.out.format("Mean Per-client Throughput: %.3f message(s), ", mean);
         System.out.format("Standard Deviation of Per-client Throughput: %.3f message(s)\n", stdDev);
     }

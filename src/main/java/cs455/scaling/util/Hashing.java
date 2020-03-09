@@ -23,6 +23,8 @@ public class Hashing {
         while (hash.length() < 40)
             hash = "0"+ hash;
         
+        assert hash.length() == 40;
+        
         return hash;
     }
     

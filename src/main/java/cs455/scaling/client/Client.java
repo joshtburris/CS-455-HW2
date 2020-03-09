@@ -1,14 +1,14 @@
 package cs455.scaling.client;
 
-import cs455.scaling.util.Constants;
-import cs455.scaling.util.Hashing;
+import cs455.scaling.server.MessageStream;
+import cs455.scaling.util.*;
 
 import java.io.IOException;
 import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Unlike the server node, there are multiple Clients (minimum of 100) in the system. A client provides the following
@@ -25,6 +25,9 @@ public class Client {
     
     private final String serverHost;
     private final int serverPort, messageRate;
+    private final LinkedBlockingQueue<String> hashCodes = new LinkedBlockingQueue<>();
+    private final Random rand = new Random();
+    private MessageStream messageStream;
     
     public Client(String serverHost, int serverPort, int messageRate) {
         this.serverHost = serverHost;
@@ -45,6 +48,8 @@ public class Client {
             while (!socketChannel.finishConnect()) {
                 // Do nothing. Wait for the socketChannel to finish connecting. We must do non-blocking I/O.
             }
+    
+            messageStream = new MessageStream(socketChannel);
             
             System.out.println("Successfully connected to server: "+ socketChannel.getRemoteAddress());
         
@@ -52,40 +57,46 @@ public class Client {
             System.out.println("IOException: Unable to connect to server.");
             return;
         }
+    
+        ArrayList<Timer> timers = new ArrayList<>();
+        double doubleRate = 1.0 / (double)messageRate;
         
-        ByteBuffer buffer;
-        Scanner in = new Scanner(System.in);
-        String line, response;
+        for (double i = doubleRate; i < 1.0+doubleRate; i += doubleRate) {
         
-        while (!(line = in.nextLine()).isEmpty()) {
-            try {
-                
-                System.out.println("Sent: "+ Hashing.SHA1FromBytes(line.getBytes()));
-                
-                byte[] bytes = Arrays.copyOf(line.getBytes(), line.getBytes().length+1);
-                bytes[bytes.length-1] = (byte)4;
-                buffer = ByteBuffer.wrap(bytes);
-                
-                while (buffer.hasRemaining()) {
-                    socketChannel.write(buffer);
-                }
-                
-                buffer.clear();
-                
-                int bytesRead = 0;
-                while (buffer.hasRemaining() && bytesRead != -1) {
-                    bytesRead = socketChannel.read(buffer);
-                }
-                
-                response = new String(buffer.array()).trim();
-                System.out.println("Response: "+ response);
-                buffer.clear();
-                
-            } catch (IOException ioe) {
-                System.out.println("IOException: Unable to send message.");
-            }
+            Timer t = new Timer();
+            t.scheduleAtFixedRate(new SendMessageTimerTask(messageStream), Math.round(i * 1000), 1L);
+            timers.add(t);
+        
         }
         
+        while (true) {
+            
+            String hash = messageStream.readString();
+            hashCodes.remove(hash);
+        
+        }
+        
+    }
+    
+    private class SendMessageTimerTask extends TimerTask {
+    
+        private final MessageStream messageStream;
+        
+        public SendMessageTimerTask(MessageStream messageStream) {
+            this.messageStream = messageStream;
+        }
+        
+        @Override public void run() {
+            
+            byte[] byteArray = new byte[Constants.BYTE_ARRAY_BUFFER_SIZE];
+            rand.nextBytes(byteArray);
+            
+            String hash = Hashing.SHA1FromBytes(byteArray);
+            hashCodes.add(hash);
+            
+            messageStream.writeByteArray(byteArray);
+            
+        }
     }
     
     public static void main(String[] args) {
