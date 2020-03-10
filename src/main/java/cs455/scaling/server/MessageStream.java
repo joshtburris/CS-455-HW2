@@ -19,11 +19,11 @@ public class MessageStream {
     }
     
     private byte[] readByteArray(int bufferSize) {
-    
-        byte[] byteArray = new byte[0];
-        readBuffer = ByteBuffer.allocate(bufferSize);
-        
         synchronized (readLock) {
+    
+            byte[] byteArray = new byte[0];
+            readBuffer = ByteBuffer.allocate(bufferSize);
+            
             try {
         
                 // Continuously read from the socketChannel into the buffer until there is nothing more to read, AKA the
@@ -31,23 +31,22 @@ public class MessageStream {
                 int bytesRead = 0;
                 while (readBuffer.hasRemaining() && bytesRead >= 0) {
                     bytesRead += socketChannel.read(readBuffer);
-                    if (bytesRead != 0 && readBuffer.get(bytesRead - 1) == 4)
-                        break;
+                    //if (bytesRead != 0 && readBuffer.get(bytesRead - 1) == 4)
+                    //    break;
                 }
         
                 if (readBuffer.hasArray()) {
-                    byte[] bufArray = readBuffer.array();
-                    byteArray = new byte[bufArray.length];
-                    System.arraycopy(bufArray, 0, byteArray, 0, bufArray.length);
-                    //byteArray = Arrays.copyOf(readBuffer.array(), readBuffer.array().length);
+                    byteArray = Arrays.copyOf(readBuffer.array(), readBuffer.array().length);
                 }
+                
+                readBuffer.clear();
                 
             } catch (IOException ioe) {
                 System.out.println("IOException: Unable to read from socketChannel.");
             }
-        }
     
-        return byteArray;
+            return byteArray;
+        }
     }
     
     public byte[] readByteArray() {

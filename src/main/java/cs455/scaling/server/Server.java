@@ -2,10 +2,11 @@ package cs455.scaling.server;
 
 import cs455.scaling.util.*;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.*;
 import java.nio.channels.*;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * There is exactly one server node in the system. The server node provides the following functions:
@@ -21,6 +22,7 @@ public class Server {
     public final ThroughputStatistics stats;
     private Selector selector;
     private ServerSocketChannel serverChannel;
+    private final ConcurrentHashMap<String, MessageStream> messageStreamsMap = new ConcurrentHashMap<>();
     
     public Server(int portnum, int threadPoolSize, int batchSize, long batchTime) {
         stats = new ThroughputStatistics();
@@ -107,6 +109,8 @@ public class Server {
                 client.configureBlocking(false);
                 client.register(selector, SelectionKey.OP_READ);
                 key.attach(null);
+    
+                messageStreamsMap.put(client.getRemoteAddress().toString(), new MessageStream(client));
                 stats.registerNewClient(client.getRemoteAddress().toString());
                 
             } catch (Exception ioe) {
@@ -120,30 +124,40 @@ public class Server {
         
         private final SelectionKey key;
         private final SocketChannel socketChannel;
-        private final MessageStream messageStream;
+        private MessageStream messageStream;
         private final ThroughputStatistics stats;
         
         public ReadMessageTask(SelectionKey key, ThroughputStatistics stats) {
             this.key = key;
             this.socketChannel = (SocketChannel) key.channel();
-            this.messageStream = new MessageStream(socketChannel);
             this.stats = stats;
+    
+            try {
+                this.messageStream  = messageStreamsMap.get(socketChannel.getRemoteAddress().toString());
+            } catch (IOException ioe) {
+                System.out.println(ioe.getMessage());
+            }
         }
         
         @Override public void run() {
             
-            byte[] byteArray = messageStream.readByteArray();
-            Hashing hashing = new Hashing(byteArray);
-            
-            messageStream.writeString(hashing.getHash());
-            key.attach(null);
-            
-            try {
-                stats.incrementNumMessages(socketChannel.getRemoteAddress().toString());
-            } catch (IOException ioe) {
-                System.out.println("IOException: socketChannel could not get remote address.");
+            if (messageStream != null) {
+                
+                byte[] byteArray = messageStream.readByteArray();
+                Hashing hashing = new Hashing(byteArray);
+    
+                messageStream.writeString(hashing.getHash());
+                key.attach(null);
+    
+                try {
+                    stats.incrementNumMessages(socketChannel.getRemoteAddress().toString());
+                } catch (IOException ioe) {
+                    System.out.println("IOException: socketChannel could not get remote address.");
+                }
+                
+            } else {
+                System.out.println("messageStreamsMap did not contain our remote socket address.");
             }
-            
         }
         
     }

@@ -81,9 +81,6 @@ public class Client {
                     stats.incrementNumReceived();
                 } else {
                     System.out.println("ERROR: Hash code received was not in our linked list.");
-                    System.out.println("Queue: " + hashCodes);
-                    System.out.println("Hash: " + hash);
-                    System.out.println();
                 }
         
             }
