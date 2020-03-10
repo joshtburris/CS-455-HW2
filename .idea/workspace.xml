@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3504b1c6-f68d-411b-b7d1-ccc7335874d4" name="Default" comment="" />
+    <list default="true" id="3504b1c6-f68d-411b-b7d1-ccc7335874d4" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/conf/h.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/conf/machine_list_2" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/machine_list" afterPath="$PROJECT_DIR$/conf/machine_list" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -22,8 +26,8 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="164" column="43" lean-forward="false" selection-start-line="164" selection-start-column="43" selection-end-line="164" selection-end-column="43" />
+            <state relative-caret-position="544">
+              <caret line="212" column="0" lean-forward="true" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#Server#0" expanded="false" />
@@ -660,15 +664,16 @@
       <workItem from="1583699695500" duration="15502000" />
       <workItem from="1583726837952" duration="10832000" />
       <workItem from="1583791377001" duration="7508000" />
-      <workItem from="1583813357191" duration="4108000" />
+      <workItem from="1583813357191" duration="5099000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108314000" />
+    <option name="totallyTimeSpent" value="109305000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="31" width="1280" height="1362" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -679,7 +684,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913166" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21310116" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21310116" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14495113" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1320,8 +1325,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cs455/scaling/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="164" column="43" lean-forward="false" selection-start-line="164" selection-start-column="43" selection-end-line="164" selection-end-column="43" />
+        <state relative-caret-position="544">
+          <caret line="212" column="0" lean-forward="true" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#Server#0" expanded="false" />
