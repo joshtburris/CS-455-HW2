@@ -32,7 +32,7 @@ public class Server {
             selector = Selector.open();
             serverChannel = ServerSocketChannel.open();
         } catch (IOException ioe) {
-            System.out.println("IOException: Server may not have been given ");
+            System.out.println("IOException: Selector or ServerSocketChannel could not be opened.");
         }
         
         
@@ -179,6 +179,7 @@ public class Server {
             
         } catch (Exception e) {
             System.out.println("ERROR: Given arguments were unusable.");
+            System.out.println("Required arguments are: <port-number> <thread-pool-size> <batch-size> <batch_time>.");
             return;
         }
     

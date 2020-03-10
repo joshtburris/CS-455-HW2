@@ -49,35 +49,33 @@ public class Client {
             
             while (!socketChannel.finishConnect()) {
                 // Do nothing. Wait for the socketChannel to finish connecting. We must do non-blocking I/O.
-                // Turns out this doesn't do what I thought it did.
+                // Turns out I don't know if this does what I thought it did. We exit this loop even before the server
+                // calls serverSocket.accept()
             }
-    
-            messageStream = new MessageStream(socketChannel);
             
             System.out.println("Successfully connected to server: "+ socketChannel.getRemoteAddress());
         
         } catch (IOException ioe) {
             System.out.println("IOException: Unable to connect to server.");
+            System.out.println(ioe.getMessage());
             return;
         }
+    
+        messageStream = new MessageStream(socketChannel);
     
         ArrayList<Timer> timers = new ArrayList<>(messageRate);
         double doubleRate = 1.0 / (double)messageRate;
         
-        for (double i = doubleRate; i < 1.0+doubleRate; i += doubleRate) {
-        
+        for (double i = doubleRate; i < 1.0 + doubleRate; i += doubleRate) {
             Timer t = new Timer();
             t.scheduleAtFixedRate(new SendMessageTimerTask(messageStream), Math.round(i * 1000), 1000L);
             timers.add(t);
-        
         }
         
         try {
             while (true) {
         
-                String hash = messageStream.readString();
-                if (hashCodes.contains(hash)) {
-                    hashCodes.remove(hash);
+                if (hashCodes.remove(messageStream.readString())) {
                     stats.incrementNumReceived();
                 } else {
                     System.out.println("ERROR: Hash code received was not in our linked list.");
@@ -85,7 +83,20 @@ public class Client {
         
             }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("UNKNOWN ERROR: Looping to read and remove hash codes failed. Attempting to shutdown " +
+                    "gracefully.");
+        }
         
+        for (Timer t : timers) {
+            t.cancel();
+        }
+        
+        try {
+            socketChannel.close();
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+            System.out.println("IOException: socketChannel failed to close.");
         }
         
     }
